@@ -1,6 +1,7 @@
 package com.helpshift.trie.test;
 
 import com.helpshift.contact.Contact;
+import com.helpshift.trie.Pair;
 import com.helpshift.trie.TrieImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -13,6 +14,10 @@ import java.util.Set;
  */
 public class TrieImplTest {
     private static TrieImpl<Contact> trie;
+
+    private TrieImpl<Contact> getTrie(){
+        return new TrieImpl<>();
+    }
 
     @BeforeClass
     public static void setUp(){
@@ -47,6 +52,21 @@ public class TrieImplTest {
 
     @Test
     public void testGetValuesWithDist(){
-        
+        TrieImpl<Contact> trie1 = getTrie();
+        Contact contact1 = new Contact("Chris1","Harris");
+        Contact contact2 = new Contact("Chris","");
+        trie1.insert("Chris1",contact1);
+        trie1.insert("Chris",contact2);
+        Set<Pair<Contact, Boolean>> set = trie1.getValuesWithDist("Chris");
+        Assert.assertEquals(set.size(),2);
+        for (Pair<Contact,Boolean> pair : set){
+            if (pair.getLeft()==contact1){
+                Assert.assertEquals(pair.getRight(),false);
+            }
+            else if (pair.getLeft()==contact2){
+                Assert.assertEquals(pair.getRight(),true);
+            }
+
+        }
     }
 }
