@@ -46,11 +46,14 @@ public class ContactManagerImpl implements ContactManager {
         }
     }
 
-    @Override
-    public List<Contact> searchContact(String key) {
-        return null;
-    }
 
+    /**
+     * Query firstName DataTrie
+     * Query lastName DataTrie
+     * Rank them based on result
+     * @param searchString
+     * @return
+     */
     @Override
     public List<Contact> searchContacts(String searchString) {
         List<Contact> prefixMatchedContacts = new ArrayList<>();
@@ -60,7 +63,8 @@ public class ContactManagerImpl implements ContactManager {
 
             Set<Pair<Contact, Boolean>> lastNameMatch = lastNameTrie.getValuesWithDist(searchString);
             Set<Pair<Contact, Boolean>> lastNameMatchFiltered = lastNameMatch.stream().filter(o ->
-                    !firstNameMatchContact.contains(o.getLeft())).collect(Collectors.toSet());
+                    !firstNameMatchContact.contains(o.getLeft())
+            ).collect(Collectors.toSet());
             firstNameMatch.addAll(lastNameMatchFiltered);
             prefixMatchedContacts = firstNameMatch.stream()
                     .sorted((o1,o2) -> o1.getRight()==o2.getRight() ? 0 : (o1.getRight() ? -1:1))

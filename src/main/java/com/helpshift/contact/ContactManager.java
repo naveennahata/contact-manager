@@ -7,6 +7,5 @@ import java.util.List;
  */
 public interface ContactManager {
     void addContact(String firstName, String lastName);
-    List<Contact> searchContact(String key);
     List<Contact> searchContacts(String searchString);
 }

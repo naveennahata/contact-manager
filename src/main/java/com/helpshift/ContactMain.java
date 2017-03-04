@@ -2,9 +2,13 @@ package com.helpshift;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.helpshift.contact.Contact;
 import com.helpshift.module.ContactManagerModule;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,27 +18,38 @@ public class ContactMain {
     public static void main(String args[]) throws IOException {
         Injector injector = Guice.createInjector(new ContactManagerModule());
         ContactManagerApplication app = injector.getInstance(ContactManagerApplication.class);
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true){
             System.out.println("1) Add contact 2) Search 3) Exit");
-            int input = sc.nextInt();
+            int input = getIntegerInput(br.readLine());
             switch (input){
                 case 1:
                     System.out.print("\nEnter name:");
-                    app.createContact(sc.next(sc.nextLine()));
-                    System.out.println("\n============================\n");
+                    app.createContact(br.readLine());
                     break;
                 case 2:
                     System.out.print("\nEnter name:");
-                    app.searchContact(sc.nextLine());
-                    System.out.println("\n============================\n");
+                    List<Contact> contactList = app.searchContact(br.readLine());
+                    for (Contact contact : contactList){
+                        System.out.println(contact.displayContact());
+                    }
                     break;
                 case 3:
+                    System.out.println("Happy Searching");
+                    System.exit(0);
                     break;
                 default:
                     System.out.print("\nInvalid option entered. Please try again");
-                    System.out.println("\n============================\n");
             }
         }
     }
+
+    private static int getIntegerInput(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e){
+            return -1;
+        }
+    }
+
 }

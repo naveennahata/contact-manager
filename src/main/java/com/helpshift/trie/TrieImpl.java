@@ -32,9 +32,9 @@ public class TrieImpl<T> implements Trie<T> {
             } else {
                 node = node.getChilds().get(ch);
             }
-            node.setComplete(true);
-            node.getValueSet().add(value);
         }
+        node.setComplete(true);
+        node.getValueSet().add(value);
     }
 
     @Override

@@ -29,9 +29,9 @@ public class Contact {
                         (lastName != null && lastName.equalsIgnoreCase(contact.getLastName())));
     }
 
-    public static String displayContact(Contact contact) {
-        return StringUtils.isEmpty(contact.getFirstName()) ? contact.getLastName() : (StringUtils.isEmpty(contact
-                .getLastName()) ? contact.getFirstName() : contact.getFirstName() + " " + contact.getLastName());
+    public  String displayContact() {
+        return StringUtils.isEmpty(this.getFirstName()) ? this.getLastName() : (StringUtils.isEmpty(this
+                .getLastName()) ? this.getFirstName() : this.getFirstName() + " " + this.getLastName());
     }
 
 }
