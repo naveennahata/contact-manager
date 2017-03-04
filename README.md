@@ -1,0 +1,17 @@
+# contact-manager
+
+Search through Contacts
+This program will be used to store Contacts and support these two operations :
+1. Add Contact
+2. Search Contact
+
+This Program store Contacts in Trie DataStructure.
+
+PreRequisite :
+
+Java 8 and Maven
+
+How to run Program :
+
+1. Run mvn clean compile assembly:single
+2. Run generated jar.
