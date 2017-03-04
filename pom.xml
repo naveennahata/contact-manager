@@ -69,7 +69,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.helpshift.ContactsManagementApplicationDriver</mainClass>
+                            <mainClass>com.helpshift.ContactMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
