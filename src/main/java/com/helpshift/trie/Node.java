@@ -14,10 +14,11 @@ import java.util.Set;
 public class Node<T> {
     public static final short CHAR_SIZE = 26;
     private boolean isComplete = false;
-    private HashMap<Character,Node> childs = new HashMap<>();
+    private HashMap<Character,Node> childs;
     private Set<T> valueSet;
 
     public Node(){
         this.valueSet = new HashSet<T>();
+        this.childs = new HashMap<>();
     }
 }

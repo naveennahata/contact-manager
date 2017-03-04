@@ -16,6 +16,10 @@ public class TrieImpl<T> implements Trie<T> {
 
     private Node<T> root;
 
+    public TrieImpl(){
+        root = new Node<T>();
+    }
+
     @Override
     public void insert(String key, T value) {
         Node<T> node = root;

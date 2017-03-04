@@ -37,6 +37,13 @@ public class ContactManagerImpl implements ContactManager {
         Contact contact = new Contact(firstName,lastName);
 
         Validate.isTrue(!isDuplicateEntry(contact),"contact already exist");
+
+        if (!StringUtils.isEmpty(contact.getFirstName())){
+            firstNameTrie.insert(contact.getFirstName(),contact);
+        }
+        if (!StringUtils.isEmpty(contact.getLastName())){
+            lastNameTrie.insert(contact.getLastName(),contact);
+        }
     }
 
     @Override
